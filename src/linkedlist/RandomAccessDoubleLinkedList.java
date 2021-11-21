@@ -88,14 +88,34 @@ public class RandomAccessDoubleLinkedList<E> implements Collection<E> {
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		Object[] result = new Object[randomAccessMap.size()];
+		int i = 0;
+		Node node = head;
+		while (node != null) {
+			result[i++] = node.element;
+			node = node.next;
+		}
+		return result;
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public <T> T[] toArray(T[] a) {
-		// TODO Auto-generated method stub
-		return null;
+		if (a.length < randomAccessMap.size()) {
+            a = (T[])java.lang.reflect.Array.newInstance(
+                                a.getClass().getComponentType(), randomAccessMap.size());
+		}
+        int i = 0;
+        Object[] result = a;
+        for (Node x = head; x != null; x = x.next) {
+            result[i++] = x.element;
+        }
+
+        if (a.length > randomAccessMap.size()) {
+            a[randomAccessMap.size()] = null;
+        }
+
+        return a;
 	}
 
 	@Override
