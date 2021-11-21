@@ -63,7 +63,7 @@ public class RandomAccessDoubleLinkedList<E> implements Collection<E> {
 			
 			private void checkForComodification() {
 				if (randomAccessMap.size() != checkSize) {
-					throw new ConcurrentModificationException("List size has changed");
+					throw new ConcurrentModificationException("List size has changed ");
 				}
 			}
 		};
