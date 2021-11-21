@@ -13,16 +13,16 @@ public class RandomAccessDoubleLinkedList<E> implements Collection<E> {
 	private Map<E, Node> randomAccessMap = new HashMap<>();
 
 	private class Node {
-		Node(E element, Node prev) {
-			this.element = element;
+		Node prev;
+		E item;
+		Node next;
+		Node(E item, Node prev) {
+			this.item = item;
 			this.prev = prev;
 			if (prev != null) {
 				prev.next = this;
 			}
 		}
-		Node prev;
-		E element;
-		Node next;
 	}
 	
 	@Override
@@ -54,7 +54,7 @@ public class RandomAccessDoubleLinkedList<E> implements Collection<E> {
 				checkForComodification();
 				E result = null;
 				if (current != null) {
-					result = current.element;
+					result = current.item;
 					current = current.next;
 					count ++;
 				}
@@ -92,7 +92,7 @@ public class RandomAccessDoubleLinkedList<E> implements Collection<E> {
 		int i = 0;
 		Node node = head;
 		while (node != null) {
-			result[i++] = node.element;
+			result[i++] = node.item;
 			node = node.next;
 		}
 		return result;
@@ -108,7 +108,7 @@ public class RandomAccessDoubleLinkedList<E> implements Collection<E> {
         int i = 0;
         Object[] result = a;
         for (Node x = head; x != null; x = x.next) {
-            result[i++] = x.element;
+            result[i++] = x.item;
         }
 
         if (a.length > randomAccessMap.size()) {
@@ -176,24 +176,34 @@ public class RandomAccessDoubleLinkedList<E> implements Collection<E> {
 	public E get(Object o) {
 		Node node = randomAccessMap.get(o);
 		if (node != null) {
-			return node.element;
+			return node.item;
 		}
 		return null;
 	}
 	
+	public boolean addAfter(E item, E after) {
+		// TODO
+		return false;
+	}
+	
+	public boolean addBefore(E item, E before) {
+		// TODO
+		return false;	
+	}
+
 	public String toString() {
 		Node print = head;
 		StringBuilder sb = new StringBuilder("RandomAccessDoubleLinkedList: \n");
 		while (print != null) {
 			sb.append("Node: ");
-			sb.append(print.element);
+			sb.append(print.item);
 			sb.append(" Prev: ");
 			if (print.prev != null) {
-				sb.append(print.prev.element);
+				sb.append(print.prev.item);
 			}
 			sb.append(" Next: ");
 			if (print.next != null) {
-				sb.append(print.next.element);
+				sb.append(print.next.item);
 			}
 			sb.append("\n");
 			print = print.next;
@@ -201,5 +211,5 @@ public class RandomAccessDoubleLinkedList<E> implements Collection<E> {
 		sb.append(size());
 		return sb.toString();
 	}
-	
+
 }
