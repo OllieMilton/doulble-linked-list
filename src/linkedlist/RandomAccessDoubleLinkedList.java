@@ -1,4 +1,4 @@
-package spliterator.test;
+package linkedlist;
 
 import java.util.Collection;
 import java.util.ConcurrentModificationException;

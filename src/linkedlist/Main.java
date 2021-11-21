@@ -1,4 +1,4 @@
-package spliterator.test;
+package linkedlist;
 
 import java.util.Collection;
 
@@ -14,7 +14,7 @@ public class Main {
 		col.add("four");
 		col.add("five");
 		col.add("six");
-		col.add("severn");
+		col.add("seven");
 		
 		
 		System.out.println(col.toString());
